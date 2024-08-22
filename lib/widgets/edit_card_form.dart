@@ -135,7 +135,6 @@ class _EditCardFormState extends State<EditCardForm> {
                 if (_cardNumberController.text == '' &&
                     _expirationDateController.text == '') {
                   _populateCardDetails(card);
-                  Navigator.pop(ctx);
                 }
               },
             ),
