@@ -1,11 +1,4 @@
-<!--![alt text](<Screenshot 2024-08-21 at 21.43.34.png>) 
-
-270 105
-470 705
-
--->
-
-<img src="Screenshot 2024-08-21 at 21.43.34.png" alt="alt text" width="300"/>
+<img width="307" alt="Screenshot 2024-08-21 at 21 43 34" src="https://github.com/user-attachments/assets/19edbd79-1136-4495-90e6-5d65362acc74">
 
 ## What is Pochette?
 
@@ -30,10 +23,26 @@
 
 ## Demonstration
 
-A video of the app running on a mobile device can be seen here: youtube.com/immabeast
+A video of the app running on a mobile device can be seen here: [https://www.youtube.com/watch?v=jfsva6VBydI]
 
-![alt text](imgonline-com-ua-twotoone-ra0zucDOs0t.png)
-![alt text](imgonline-com-ua-twotoone-913vd1c8ByT3.png)
+<img src="https://github.com/user-attachments/assets/59f1527d-5537-4d66-8950-b5171e84c425" alt="IMG_5537" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/601848e2-3a27-4a98-8248-6ffec96dec54" alt="IMG_5539" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/1b9000f0-4aff-49b4-adc6-1c9bc3fe7b21" alt="IMG_5540" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/a3e77896-d169-46b6-8d25-5c2319f81b9b" alt="IMG_5541" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/4b4aae46-1875-4321-b6e5-b65db9743736" alt="IMG_5538" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/5e26bbb8-8d72-4acf-899d-d723f13e81fd" alt="IMG_5542" width="200"/>
+
+
+
+
+
+
+
 
 
 
