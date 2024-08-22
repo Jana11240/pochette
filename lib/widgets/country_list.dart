@@ -36,10 +36,15 @@ class _CountryListState extends State<CountryList> {
   }
 
   Future<bool> _getAllCountries() async {
-    final countries = await loadCountries();
-    setState(() {
-      _countries = countries;
-    });
+    try {
+      final countries = await loadCountries();
+      setState(() {
+        _countries = countries;
+      });
+    } catch (error) {
+      print(error);
+    }
+
     return true;
   }
 
@@ -59,9 +64,13 @@ class _CountryListState extends State<CountryList> {
   }
 
   void _saveCountryListToStorage() async {
-    String jsonString =
-        json.encode(_bannedCountries.map((card) => card.toJson()).toList());
-    await storage.writeToFile('bannedCountries', jsonString);
+    try {
+      String jsonString =
+          json.encode(_bannedCountries.map((card) => card.toJson()).toList());
+      await storage.writeToFile('bannedCountries', jsonString);
+    } catch (error) {
+      print(error);
+    }
   }
 
   void _onAddCountry() {

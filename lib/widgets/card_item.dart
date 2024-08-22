@@ -2,7 +2,7 @@ import 'package:bank_card_app/models/card_model.dart';
 import 'package:bank_card_app/general/styling.dart';
 import 'package:flutter/material.dart';
 
-class CardItem extends StatefulWidget {
+class CardItem extends StatelessWidget {
   const CardItem({
     super.key,
     required this.card,
@@ -16,23 +16,11 @@ class CardItem extends StatefulWidget {
   final void Function() onTapCard;
 
   @override
-  State<CardItem> createState() {
-    return _CardItemState();
-  }
-}
-
-class _CardItemState extends State<CardItem> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(context) {
     return InkWell(
-      onTap: widget.onTapCard,
+      onTap: onTapCard,
       child: AnimatedScale(
-        scale: widget.isSelected ? 1.1 : 1.0,
+        scale: isSelected ? 1.1 : 1.0,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         child: Material(
@@ -66,7 +54,7 @@ class _CardItemState extends State<CardItem> {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          widget.card.name,
+                          card.name,
                           style: kBodyText.copyWith(
                             color: Theme.of(context).colorScheme.surface,
                           ),
@@ -81,7 +69,7 @@ class _CardItemState extends State<CardItem> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      widget.card.expirationDate,
+                      card.expirationDate,
                       style: kSmallText.copyWith(
                         color: Theme.of(context).colorScheme.surface,
                         fontWeight: FontWeight.w400,
@@ -91,9 +79,9 @@ class _CardItemState extends State<CardItem> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        if (widget.isSelected)
+                        if (isSelected)
                           Text(
-                            widget.card.cvv,
+                            card.cvv,
                             style: kSmallText.copyWith(
                               color: Theme.of(context).colorScheme.surface,
                               fontWeight: FontWeight.w700,
@@ -103,12 +91,12 @@ class _CardItemState extends State<CardItem> {
                           height: 5,
                         ),
                         Text(
-                          widget.isSelected
-                              ? widget.card.number
+                          isSelected
+                              ? card.number
                                   .replaceAllMapped(RegExp(r".{1,4}"),
                                       (match) => "${match.group(0)} ")
                                   .trim()
-                              : '${'•' * 4} ${widget.card.number.substring(12)}',
+                              : '${'•' * 4} ${card.number.substring(12)}',
                           style: kBodyText3.copyWith(
                             color: Theme.of(context).colorScheme.surface,
                             fontWeight: FontWeight.w700,
@@ -125,7 +113,7 @@ class _CardItemState extends State<CardItem> {
                     Expanded(
                       flex: 2,
                       child: Text(
-                        widget.card.cardholder,
+                        card.cardholder,
                         style: kBodyText.copyWith(
                           color: Theme.of(context).colorScheme.surface,
                         ),
@@ -136,7 +124,7 @@ class _CardItemState extends State<CardItem> {
                       child: Align(
                         alignment: Alignment.topRight,
                         child: Text(
-                          widget.card.type,
+                          card.type,
                           style: kBodyText.copyWith(
                             color: Theme.of(context).colorScheme.surface,
                             fontWeight: FontWeight.w800,

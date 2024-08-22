@@ -30,8 +30,8 @@ class _HomeScreenState extends State<CardScreen> {
   CardModel? _selectedCard;
 
   final aesEncryption = AES256Encryption(
-    '12345678901234567890123456789012',
-    '1234567890123456',
+    '69876763532690864691976421468908',
+    '8764754234689087',
   );
 
   @override
@@ -56,10 +56,14 @@ class _HomeScreenState extends State<CardScreen> {
   }
 
   void _saveCardsToStorage() async {
-    String jsonString =
-        json.encode(_cards.map((card) => card.toJson()).toList());
-    String encryptedString = aesEncryption.encrypt(jsonString);
-    await storage.writeToFile('cards', encryptedString);
+    try {
+      String jsonString =
+          json.encode(_cards.map((card) => card.toJson()).toList());
+      String encryptedString = aesEncryption.encrypt(jsonString);
+      await storage.writeToFile('cards', encryptedString);
+    } catch (error) {
+      print(error);
+    }
   }
 
   void _addNewCard() {

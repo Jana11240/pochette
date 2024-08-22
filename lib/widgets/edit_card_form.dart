@@ -118,43 +118,47 @@ class _EditCardFormState extends State<EditCardForm> {
   }
 
   _onScanCard() async {
-    final cameras = await availableCameras();
-    setState(() {
-      _cardNumberController.text = '';
-      _expirationDateController.text = '';
-    });
-    if (cameras.isNotEmpty) {
-      _cameraController = CameraController(cameras[0], ResolutionPreset.high);
-      cameraValue = _cameraController.initialize();
+    try {
+      final cameras = await availableCameras();
+      setState(() {
+        _cardNumberController.text = '';
+        _expirationDateController.text = '';
+      });
+      if (cameras.isNotEmpty) {
+        _cameraController = CameraController(cameras[0], ResolutionPreset.high);
+        cameraValue = _cameraController.initialize();
 
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (ctx) => ScanCard(
-            onCardDetailsObtained: (card) {
-              if (_cardNumberController.text == '' &&
-                  _expirationDateController.text == '') {
-                _populateCardDetails(card);
-                //Navigator.pop(ctx);
-              }
-            },
-          ),
-        ),
-      );
-    } else {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('No cameras available'),
-          content: const Text('A card cannot be scanned at this time.'),
-          actions: [
-            TextButton(
-                onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (ctx) => ScanCard(
+              onCardDetailsObtained: (card) {
+                if (_cardNumberController.text == '' &&
+                    _expirationDateController.text == '') {
+                  _populateCardDetails(card);
                   Navigator.pop(ctx);
-                },
-                child: const Text('Okay'))
-          ],
-        ),
-      );
+                }
+              },
+            ),
+          ),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('No cameras available'),
+            content: const Text('A card cannot be scanned at this time.'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(ctx);
+                  },
+                  child: const Text('Okay'))
+            ],
+          ),
+        );
+      }
+    } catch (error) {
+      print(error);
     }
   }
 
@@ -433,16 +437,10 @@ class MonthYearInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     String text = newValue.text;
-
-    // Remove any non-digit characters
     text = text.replaceAll(RegExp(r'[^0-9]'), '');
-
-    // Limit to 4 digits (MMYY)
     if (text.length > 4) {
       text = text.substring(0, 4);
     }
-
-    // Add the slash between the month and year
     if (text.length >= 3) {
       text = '${text.substring(0, 2)}/${text.substring(2)}';
     }
